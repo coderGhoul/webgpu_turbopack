@@ -10,9 +10,9 @@ class MainApp {
     set canvas(value: HTMLCanvasElement) {
         this._canvas = value;
     }
-    //adater
+    //adater  适配器 运行应用程序 和 实际图形硬件交互。
     adapter: GPUAdapter;
-    //device
+    //device 设备
     device: GPUDevice;
     //context
     context: GPUCanvasContext;
@@ -41,7 +41,23 @@ class MainApp {
             return null
     }
     async initWebGPUConfig() {
-        this.adapter = await navigator.gpu.requestAdapter();
+        // 获取适配器 
+        /**
+         * @param option
+         * powerPreference:GPU 设备的电源首选项。可选值为 "low-power" 和 "high-performance"。默认值为 "low-power"。
+         * forceFallbackAdapter:如果为 true，则强制使用 备用 适配器。默认值为 false。
+         * 
+         * @returns GPUAdapter
+         * **/
+        this.adapter = await navigator.gpu.requestAdapter({powerPreference:'high-performance',forceFallbackAdapter:false});
+        // 获取设备
+        /**
+         * @param description
+         * defaultQueue:GPU 设备的默认 GPU 命令队列。
+         * label:GPU 设备的标签。
+         * requiredFeatures:GPU 设备必须支持的功能。
+         * @returns GPUDevice
+         * **/
         this.device = await this.adapter.requestDevice();
         this.context = this._canvas.getContext('webgpu');
         return this
@@ -70,7 +86,7 @@ class MainApp {
     Update() {
         if (this === undefined) return
         const commandEncoder = this.device.createCommandEncoder();
-        const clearColor = { r: 1.0, g: 0.0, b: 0.0, a: 1.0 };
+        const clearColor = { r: 1.0, g: 1.0, b: 1.0, a: 1.0 };
 
      const renderPassDescriptor = {
   colorAttachments: [
