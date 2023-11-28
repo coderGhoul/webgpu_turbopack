@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Next.js + Turbopack
 
 This example allows you to get started with `next dev --turbo` quicky.
@@ -23,3 +24,7 @@ pnpm create next-app --example with-turbopack with-turbopack-app
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+=======
+# webgpu_turbopack
+turbopack webgpu
+>>>>>>> 4b04637704c2e95f53f644621d41c03dbca23de7
